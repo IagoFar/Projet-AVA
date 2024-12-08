@@ -25,7 +25,7 @@ body{
 
 
 .dropbtn {
-    background-color: hsl(188, 53%, 52%);
+    background-color: #FAD0C9;
     color: white;
     padding: 16px;
     font-size: 16px;
@@ -40,7 +40,7 @@ body{
 .dropdown-content {
 display: none;
 position: absolute;
-background-color: #f1f1f1;
+background-color: #FAD0C9;
 min-width: 160px;
 box-shadow: 0px 8px 16pxs 0px rgba(0,0,0,0.2);
 z-index: 1;
