@@ -103,3 +103,9 @@ z-index: 1;
 .text_pasillo{
     text-align: start;
 }
+
+@media (max-width: 640px){
+    .img_entrada_pole{
+        display: none;
+    }
+}
