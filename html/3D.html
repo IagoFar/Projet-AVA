@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2MTNE</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    
+    <style>
+        #container {
+            width: 150vh;
+            height: 60vh;
+            position: relative;
+            top: 30px;
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r110/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/panolens@0.12.0/build/panolens.min.js"></script>
+</head>
+<body> 
+
+    <div class="container_portada">       
+        <div class="text_portada"> <h1>Lycée des métiers Les côtes de Villebon <br> 3, rue Henri Etlin - 92360 Meudon - 01 46 01 55 00</h1></div>
+        <img src="../img/pole_industriel.jpg" alt="" class="img_entrada_pole"/>
+    </div>
+
+    
+    <div class="menu">
+            <div class="dropdown">
+                <button class="dropbtn">batiment</button>
+                
+                <div class="dropdown-content">
+                <a href="../index.html">Pôle Industriel</a>
+                </div>
+            </div>
+            
+
+            <div class="dropdown">
+                <button class="dropbtn">Classes</button>
+                
+                <div class="dropdown-content">
+                    <a href="./classe_2mtne.html">2MTNE</a>
+                    <a href="./classe_melec.html">MELEC</a>
+                    <a href="./classe_ciel.html">CIEL</a>
+                </div>
+            </div>
+                        <div class="dropdown">
+                <button class="dropbtn">Plan 3D</button>
+                <div class="dropdown-content">
+                    <a href="./3D.html">3D</a>
+                </div>
+
+            </div>
+    </div>
+
+    <div id="container"></div>
+    <script>
+        
+        
+        const viewer = new PANOLENS.Viewer({ 
+            container: document.getElementById('container'),
+            autoHideInfospot: false,
+        });
+
+        const entrance = new PANOLENS.ImagePanorama('../img/entrance.jpg');
+        const couloir_principale = new PANOLENS.ImagePanorama('../img/couloir_principale.jpg');  
+        const faci_01 = new PANOLENS.ImagePanorama('../img/faci_01.jpg');
+        const Buzzareee = new PANOLENS.ImagePanorama('../img/Buzzareee.jpg');
+        const Hedfi = new PANOLENS.ImagePanorama('../img/Hedfi.jpg');
+        const E013 = new PANOLENS.ImagePanorama('../img/E013.jpg');
+        const Couloie_Elec = new PANOLENS.ImagePanorama('../img/Couloie_Elec.jpg');
+        const Couloie_el_c_2 = new PANOLENS.ImagePanorama('../img/Couloie_el_c_2.jpg');
+        const Couloie_Elec_4 = new PANOLENS.ImagePanorama('../img/Couloie_Elec_4.jpg');
+        const E011 = new PANOLENS.ImagePanorama('../img/E011.jpg');
+        const Couloir_r_4 = new PANOLENS.ImagePanorama('../img/Couloir_r_4.jpg');
+        const E013_Elec_1 = new PANOLENS.ImagePanorama('../img/E013_Elec_1.jpg');
+        const E013_Elec_2 = new PANOLENS.ImagePanorama('../img/E013_Elec_2.jpg');
+        const Elec_013_3 = new PANOLENS.ImagePanorama('../img/Elec_013_3.jpg');
+        const Couloir_3 = new PANOLENS.ImagePanorama('../img/Couloir_3.jpg');
+        const E004 = new PANOLENS.ImagePanorama('../img/E004.jpg');
+        const Salle_006 = new PANOLENS.ImagePanorama('../img/Salle_006.jpg');
+        const Salle_006_2 = new PANOLENS.ImagePanorama('../img/Salle_006_2.jpg');   
+        const Faci_015 = new PANOLENS.ImagePanorama('../img/Faci_015.jpg');
+        const Couloir_2 = new PANOLENS.ImagePanorama('../img/Couloir_2.jpg');
+        const Pinq = new PANOLENS.ImagePanorama('../img/Pinq.jpg');
+        const Couloie_A = new PANOLENS.ImagePanorama('../img/Couloie_A.jpg');
+        const Salle_faci_2 = new PANOLENS.ImagePanorama('../img/Salle_faci_2.jpg');
+        const Salle_faci_1 = new PANOLENS.ImagePanorama('../img/Salle_faci_1.jpg');
+        const E021 = new PANOLENS.ImagePanorama('../img/E021.jpg');
+        const Salle_economia = new PANOLENS.ImagePanorama('../img/Salle_economia.jpg');
+        const Tra_salle = new PANOLENS.ImagePanorama('../img/Tra_salle.jpg');
+
+        viewer.add(entrance, couloir_principale, faci_01, Buzzareee, Hedfi, E013, Couloie_Elec, Couloie_el_c_2, Couloie_Elec_4, E011, Couloir_r_4, E013_Elec_1, E013_Elec_2, Elec_013_3
+            , Couloir_3, E004, Salle_006, Salle_006_2, Faci_015, Couloir_2, Pinq, Couloie_A, Salle_faci_2, Salle_faci_1, E021, Salle_economia, Tra_salle
+        );
+        
+        function addHotspot(panorama, targetPanorama, position) {
+            const svgContent = '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><circle cx="16" cy="16" r="14" fill="red"/><path d="M16 6 L26 16 L16 26 L6 16 Z" fill="white"/></svg>';
+            const svgDataUri = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svgContent);
+            
+            const hotspot = new PANOLENS.Infospot(300, svgDataUri); 
+            hotspot.position.set(position.x, position.y, position.z);
+            
+            
+            hotspot.addEventListener('click', () => {
+                console.log(`Hotspot clicked at position: x:${position.x}, y:${position.y}, z:${position.z}`);
+                viewer.setPanorama(targetPanorama);
+            });
+
+            hotspot.visible = true;
+            hotspot.material.opacity = 1;
+            hotspot.material.transparent = true;
+            panorama.add(hotspot);
+        }
+
+        entrance.addEventListener('load', () => {
+                    addHotspot(entrance, couloir_principale, { x: -3000, y: 0, z: 4000 }); 
+        })
+
+        couloir_principale.addEventListener('load', () => {
+            addHotspot(couloir_principale, entrance, { x: 5500, y: -600, z: -3000 }); 
+            addHotspot(couloir_principale, faci_01, { x: -2000, y: -300, z: -3000 });
+            addHotspot(couloir_principale, Buzzareee, { x: -7000, y: -200, z: 4000 });
+            addHotspot(couloir_principale, Hedfi, { x: 6000, y: -300, z: 3000 });
+            addHotspot(couloir_principale, E013, { x: 100, y: -100, z: 5000  });
+            addHotspot(couloir_principale, Couloie_Elec, { x: -5500, y: -100, z: 5000 });
+            addHotspot(couloir_principale, Couloir_r_4, { x: 3000, y: 0, z: 5000 });
+            addHotspot(couloir_principale, E013, { x: 1500, y: -100, z: 5000  });                       
+        });
+
+        faci_01.addEventListener('load', () => {
+            addHotspot(faci_01, couloir_principale, { x: -2200, y: -100, z: 5000 }); 
+        });
+        Buzzareee.addEventListener('load', () => {
+            addHotspot(Buzzareee, couloir_principale, { x: 5000, y: -100, z: -400 }); 
+        });
+        Hedfi.addEventListener('load', () => {
+            addHotspot(Hedfi, couloir_principale, { x: -5000, y: -100, z: 500 }); 
+            addHotspot(Hedfi, Couloir_r_4, { x: 0, y: -100, z: 5000 });
+        });
+
+        E013.addEventListener('load', () => {
+            addHotspot(E013, couloir_principale, { x: 0, y: -100, z: -5000 }); 
+            addHotspot(E013, Couloir_r_4, { x: 5000, y: -100, z: -5000 });
+            addHotspot(E013, E013_Elec_1, { x: -1000, y: -100, z: 5000 });
+        }); 
+        
+        Couloie_Elec.addEventListener('load', () => {
+            addHotspot(Couloie_Elec, couloir_principale, { x: 5000, y: -100, z: -5000 }); 
+            addHotspot(Couloie_Elec, Couloie_el_c_2, { x: -5000, y: -100, z: 5000 });
+            addHotspot(Couloie_Elec, E013_Elec_1, { x: 3000, y: -200, z: 2900 });
+        });
+
+        Couloie_el_c_2.addEventListener('load', () => {
+            addHotspot(Couloie_el_c_2, Couloie_Elec, { x: 4000, y: -100, z: -5000 }); 
+            addHotspot(Couloie_el_c_2, Couloie_Elec_4, { x: -5000, y: -100, z: 5000 });
+            addHotspot(Couloie_el_c_2, E013_Elec_2, { x: 5000, y: -100, z: 5000 });
+        });
+
+        Couloie_Elec_4.addEventListener('load', () => {
+            addHotspot(Couloie_Elec_4, Couloie_el_c_2, { x: 5500, y: -100, z: 4000 }); 
+            addHotspot(Couloie_Elec_4, E011, { x: 5000, y: -100, z: -5000 });
+        });
+
+        E011.addEventListener('load', () => {
+            addHotspot(E011, Couloie_Elec_4, { x: -500, y: -100, z: 5000 }); 
+        });
+    
+        Couloir_r_4.addEventListener('load', () => {
+            addHotspot(Couloir_r_4, couloir_principale, { x: -5000, y: -100, z: -5000 }); 
+            addHotspot(Couloir_r_4, Hedfi, { x: -2300, y: -100, z: -5000 });
+            addHotspot(Couloir_r_4, E013, { x: -5000, y: -100, z: 1000 });''
+            addHotspot(Couloir_r_4, Hedfi, { x: 5000, y: -100, z: 2000 });
+            addHotspot(Couloir_r_4, E013, { x: -5000, y: -100, z: -2800 });
+            addHotspot(Couloir_r_4, Couloir_3, { x: 5000, y: -100, z: 4500 });
+            addHotspot(Couloir_r_4, Faci_015, { x: -3000, y: -100, z: 5000 });
+        });
+
+        E013_Elec_1.addEventListener('load', () => {
+            addHotspot(E013_Elec_1, E013, { x: 2000, y: -100, z: -5000 }); 
+            addHotspot(E013_Elec_1, Couloie_Elec, { x: -2500, y: -100, z: -3000 });
+            addHotspot(E013_Elec_1, E013_Elec_2, { x: -5000, y: -100, z: 5000 });    
+        });
+    
+        E013_Elec_2.addEventListener('load', () => {
+            addHotspot(E013_Elec_2, E013_Elec_1, { x: 5000, y: -100, z: -5000 }); 
+            addHotspot(E013_Elec_2, Couloie_el_c_2, { x: -4000, y: -100, z: -5000 });
+            addHotspot(E013_Elec_2, Elec_013_3, { x: -5000, y: -100, z: 5000 });
+            addHotspot(E013_Elec_2, Couloie_el_c_2, { x: 5000, y: -100, z: 5000 });
+        });
+
+        Elec_013_3.addEventListener('load', () => {
+            addHotspot(Elec_013_3, E013_Elec_2, { x: 5000, y: -100, z: -5000 }); 
+        });
+
+        Couloir_3.addEventListener('load', () => {
+            addHotspot(Couloir_3, Couloir_r_4, { x: -5000, y: -100, z: -4500 }); 
+            addHotspot(Couloir_3, E004, { x: -2500, y: -100, z: -5000 });
+            addHotspot(Couloir_3, Salle_006, { x: 5000, y: -100, z: -2500 });
+            addHotspot(Couloir_3, Faci_015, { x: -5000, y: -100, z: 2000 });
+            addHotspot(Couloir_3, Couloir_2, { x: 5000, y: -100, z: 5000 });
+        });
+
+        E004.addEventListener('load', () => {
+            addHotspot(E004, Couloir_3, { x: -3000, y: -100, z: 3000 }); 
+        });
+
+        Salle_006.addEventListener('load', () => {
+            addHotspot(Salle_006, Couloir_3, { x: -5000, y: -100, z: 1000 });
+            addHotspot(Salle_006, Salle_006_2, { x: 3000, y: -100, z: 3000 });
+        });
+
+        Salle_006_2.addEventListener('load', () => {
+            addHotspot(Salle_006_2, Salle_006, { x: -5000, y: -100, z: -5000 });
+        });
+
+        Faci_015.addEventListener('load', () => {
+            addHotspot(Faci_015, Couloir_r_4, { x: 1300, y: -100, z: 5000 });
+            addHotspot(Faci_015, Couloir_3, { x: 0, y: -100, z: 0 });
+        });        
+
+        Couloir_2.addEventListener('load', () => {
+            addHotspot(Couloir_2, Couloir_3, { x: -5000, y: -100, z: -5000 });
+            addHotspot(Couloir_2, Pinq, { x: 5000, y: -100, z: 3300 });
+            addHotspot(Couloir_2, Couloie_A, { x: 5000, y: -100, z: 5000 });
+            addHotspot(Couloir_2, Salle_faci_2, { x: -5000, y: -100, z: -1000 });
+        });
+
+        Pinq.addEventListener('load', () => {
+            addHotspot(Pinq, Couloir_2, { x: -5000, y: -100, z: 50 });
+            addHotspot(Pinq, Couloie_A, { x: 1500, y: -100, z: 5000 });
+        });
+        
+        Couloie_A.addEventListener('load', () => {
+            addHotspot(Couloie_A, Couloir_2, { x: -5000, y: -100, z: -4000 });
+            addHotspot(Couloie_A, Salle_faci_1, { x: -5000, y: -100, z: -2000 });
+            addHotspot(Couloie_A, E021, { x: 2000, y: -100, z: 5000 });
+            addHotspot(Couloie_A, Pinq, { x: 5000, y: -100, z: -5500 });
+            addHotspot(Couloie_A, Salle_economia, { x: -4000, y: -100, z: 5000 });
+            addHotspot(Couloie_A, Tra_salle, { x: 5000, y: -100, z: 1000 });
+        });
+        Salle_faci_2.addEventListener('load', () => {
+            addHotspot(Salle_faci_2, Couloir_2, { x: 1500, y: -100, z: -5000 });
+            addHotspot(Salle_faci_2, Salle_faci_1, { x: 5000, y: -100, z: 5000 });
+        });
+        
+        Salle_faci_1.addEventListener('load', () => {
+            addHotspot(Salle_faci_1, Salle_faci_2, { x: -5000, y: -100, z: -4000 });
+            addHotspot(Salle_faci_1, Couloie_A, { x: 5000, y: -100, z: -1000 });
+        });
+
+        E021.addEventListener('load', () => {
+            addHotspot(E021, Couloie_A, { x: 2000, y: -100, z: -4500 });
+        });
+
+        Salle_economia.addEventListener('load', () => {
+            addHotspot(Salle_economia, Couloie_A, { x: 2000, y: -100, z: -5000 });
+        });
+
+        Tra_salle.addEventListener('load', () => {
+            addHotspot(Tra_salle, Couloie_A, { x: -800, y: -100, z: 5000 });
+        });
+        
+
+        viewer.setPanorama(entrance);
+
+    </script>
+
+</body>
+</html>
